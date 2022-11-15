@@ -36,4 +36,21 @@ const router = createRouter({
   routes
 })
 
-createApp(App).provide(DefaultApolloClient, apolloClient).use(nhost).mount('#app')
+// redirecting logic
+router.beforeEach(async(to, from, next) => {
+  if (to.matched.some(record => record.meta.protected)) {
+    const isAuthenticated = await nhost.auth.isAuthenticatedAsync()
+
+    if (!isAuthenticated) {
+      next('/login')
+    }
+  }
+
+  next()
+})
+
+createApp(App)
+  .provide(DefaultApolloClient, apolloClient)
+  .use(nhost)
+  .use(router)
+  .mount('#app')
