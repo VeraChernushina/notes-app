@@ -37,16 +37,18 @@ const router = createRouter({
 })
 
 // redirecting logic
-router.beforeEach(async(to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   if (to.matched.some(record => record.meta.protected)) {
     const isAuthenticated = await nhost.auth.isAuthenticatedAsync()
 
-    if (!isAuthenticated) {
+    if (isAuthenticated) {
+      next()
+    } else {
       next('/login')
     }
+  } else {
+    next()
   }
-
-  next()
 })
 
 createApp(App)
