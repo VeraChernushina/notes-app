@@ -41,7 +41,10 @@
         :key="note.id"
         class="relative bg-white text-slate-700 rounded-lg p-6 mb-6"
       >
-        <button class="absolute top-6 right-6 text-red-500 font-bold">
+        <button
+          class="absolute top-6 right-6 text-red-500 font-bold"
+          @click="() => deleteNote({id: note.id})"
+        >
           Delete
         </button>
         <h3 class="font-bold text-2xl mb-4">
@@ -120,6 +123,25 @@ const {
       }
     }
 `)
+
+// delete note logic
+const { mutate: deleteNote, onDone: deleteDone } = useMutation(
+  gql`
+    mutation($id: Int!) {
+      delete_notes(where: {
+        id: {
+          _eq: $id
+        }
+      }) {
+        affected_rows
+      }
+    }
+  `
+)
+
+deleteDone(() => {
+  notesRefetch()
+})
 
 const handleCreateNote = () => {
   if (!newNote.value.title || !newNote.value.content) {
