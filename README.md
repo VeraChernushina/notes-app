@@ -1,7 +1,18 @@
-# Vue 3 + Vite
+# Notes App
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+![Notes App Preview](/public/preview.png)
 
-## Recommended IDE Setup
+## Technologies and packages which I use in this project:
+* Vue 3
+* Vite
+* Vue-router 3.2
+* [NHost](https://nhost.io/)
+* [GraphQL](https://www.apollographql.com/)
+* [Tailwindcss](https://tailwindcss.com/)
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+## How to start developing?
+``
+git clone https://github.com/VeraChernushina/notes-app.git
+cd notes-app
+npm run dev
+``
