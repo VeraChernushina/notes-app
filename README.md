@@ -11,8 +11,8 @@
 * [Tailwindcss](https://tailwindcss.com/)
 
 ## How to start developing?
-``
+```
 git clone https://github.com/VeraChernushina/notes-app.git
 cd notes-app
 npm run dev
-``
+```
