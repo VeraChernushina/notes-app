@@ -47,9 +47,10 @@
         <h3 class="font-bold text-2xl mb-4">
           {{ note.title }}
         </h3>
-        <p class="text-lg text-gray-500 mb-4">
-          {{ note.content }}
-        </p>
+        <p
+          class="text-lg text-gray-500 mb-4"
+          v-html="convertToHTML(note.content)"
+        />
         <div class="text-sm text-gray-500 italic">
           {{ convertToDate(note.created) }}
         </div>
@@ -139,6 +140,10 @@ createNoteDone(() => {
     content: '',
   }
 })
+
+const convertToHTML = (content) => {
+  return content.replace(/\n/g, '<br />')
+}
 
 const convertToDate = (date) => {
   return new Date(date).toLocaleString()
